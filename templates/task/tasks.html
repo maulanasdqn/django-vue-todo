@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block konten %}
+{% verbatim %}
+  <div id="app">
+   <form @submit.prevent="buatTask">
+     <div class="form-group row">
+         <div class="col-9">
+             <label class="strong">Buat Data Baru</label>
+             <input class="form-control" placeholder="Masukan Data" type="text" v-model="task">
+         </div>
+         <div class="d-flex flex-column">
+             <button type="submit" class="btn btn-primary mt-auto">Buat</button>
+         </div>
+     </div>
+    </form> 
+
+    <div class="mt-5">
+        <div class="card mt-2 " id="data" 
+            v-for="(task, index) in taskList"
+            @click="beres(task.id, index)"
+            :class="{'completed': task.completed}">
+            <div class="card-body">
+                {{ task.judul }}
+                <button class="close float-right" type="button" @click.stop="hapus(task.id, index)">
+                    <span>
+                        &times;
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+   </div>
+ 
+{% endverbatim %}
+{% endblock %}
